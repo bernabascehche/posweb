@@ -3,11 +3,12 @@
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Plus, Download, Search, AlertCircle } from "lucide-react"
+import { Plus,AlertCircle, Download } from "lucide-react"
 import { useState } from "react"
 import { useApi } from "@/hooks/use-api"
 import { invoicingAPI } from "@/lib/api-client"
 import type { Invoice } from "@/lib/types"
+import { Search } from "lucide-react"
 
 export function InvoicesList() {
   const [searchTerm, setSearchTerm] = useState("")

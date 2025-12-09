@@ -4,10 +4,7 @@
 
 export interface PaginatedResponse<T> {
   data: T[]
-  total: number
-  page: number
-  page_size: number
-  total_pages: number
+  count: number
 }
 
 // =============================================================================
@@ -537,5 +534,177 @@ export interface InventoryAdjustmentRequest {
   lot_id?: number
   new_qty: number
   reason: string
+}
+
+// =============================================================================
+// IAM TYPES
+// =============================================================================
+
+export interface User {
+  id: string
+  phone: string
+  firstname?: string
+  middlename?: string
+  lastname?: string
+  account_id?: string
+  is_system?: boolean
+  is_default?: boolean
+  organization_id?: string
+  organization_name?: string
+  organization?: OrganizationSimple
+  organizations?: Organization[]
+  role_ids?: string[]
+  roles?: RoleSimple[]
+  created_at: string
+  updated_at: string
+}
+
+export interface Role {
+  id: string
+  name: string
+  is_system: boolean
+  organization_name: string | null
+  resource_permissions?: ResourcePermission[]
+  created_at: string
+  updated_at: string
+  deleted_at: string | null
+}
+
+export interface ResourcePermission {
+  id: string
+  resource_id: string
+  permission_id: string
+  code: string
+  resource?: Resource
+  permission?: Permission
+}
+
+export interface RoleSimple {
+  id: string
+  name: string
+  is_system: boolean
+  created_at: string
+  updated_at: string
+}
+
+export interface Permission {
+  id: string
+  code: string
+  description: string
+  created_at: string
+  updated_at: string
+  deleted_at: string | null
+}
+
+export interface Resource {
+  id: string
+  key: string
+  name: string
+  created_at: string
+  updated_at: string
+  deleted_at: string | null
+}
+
+export interface Organization {
+  id: string
+  name: string
+  tenant_id: string
+  is_active?: boolean
+  created_at: string
+  updated_at: string
+  deleted_at: string | null
+}
+
+export interface OrganizationSimple {
+  id: string
+  name: string
+  tenant_id: string
+}
+
+export interface LoginRequest {
+  phone: string
+  password: string
+  organization_id?: string
+  is_default?: boolean
+}
+
+export interface LoginResponse {
+  access_token: string
+  refresh_token?: string
+  token_type: string
+  user: User
+}
+
+export interface RefreshTokenRequest {
+  refresh_token: string
+}
+
+export interface RefreshTokenResponse {
+  access_token: string
+  refresh_token?: string
+  token_type: string
+}
+
+export interface CreateUserRequest {
+  phone: string
+  password: string
+  firstname?: string
+  middlename?: string
+  lastname?: string
+  organization_id?: string
+  role_ids?: string[]
+}
+
+export interface UpdateUserRequest {
+  phone?: string
+  password?: string
+  organization_id?: string
+  role_ids?: string[]
+}
+
+export interface CreateOrganizationRequest {
+  name: string
+  tenant_id?: string
+  address?: string
+  created_at?: string
+  updated_at?: string
+  deleted_at?: string
+}
+
+export interface UpdateOrganizationRequest {
+  name?: string
+  tenant_id?: string
+}
+
+export interface CreateRoleRequest {
+  name: string
+  organization_id?: string
+  resource_permission_ids?: string[]
+}
+
+export interface UpdateRoleRequest {
+  name?: string
+  organization_id?: string
+  resource_permission_ids?: string[]
+}
+
+export interface CreatePermissionRequest {
+  code: string
+  description: string
+}
+
+export interface UpdatePermissionRequest {
+  code?: string
+  description?: string
+}
+
+export interface CreateResourceRequest {
+  key: string
+  name: string
+}
+
+export interface UpdateResourceRequest {
+  key?: string
+  name?: string
 }
 

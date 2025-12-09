@@ -4,6 +4,7 @@ import { SalesList } from "@/components/sales/sales-list"
 import { PurchaseList } from "@/components/purchase/purchase-list"
 import { WarehouseList } from "@/components/warehouse/warehouse-list"
 import { InvoicesList } from "@/components/invoicing/invoices-list"
+import { IAMModule } from "@/components/iam/iam-module"
 
 interface DashboardContentProps {
   module: string
@@ -24,6 +25,8 @@ export function DashboardContent({ module }: DashboardContentProps) {
         return <WarehouseList />
       case "invoicing":
         return <InvoicesList />
+      case "settings":
+        return <IAMModule />
       default:
         return <DashboardOverview />
     }
