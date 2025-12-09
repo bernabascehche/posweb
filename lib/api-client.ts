@@ -1506,7 +1506,7 @@ export const iamAPI = {
       return { data: cached }
     }
 
-    const result = await apiCall<PaginatedResponse<any>>("/resource-permissions", {
+    const result = await apiCall<PaginatedResponse<any>>("/resource-permissions?includes[0]=resource&includes[1]=permission", {
       headers: getAuthHeaders(),
     })
     if (result.data) {
